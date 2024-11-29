@@ -1,0 +1,27 @@
+#generi {
+	margin-left: 1.5rem;
+	padding: 0.6rem;
+	border: 1px solid white;
+}
+.position-relative {
+	width: 100px;
+	height: 100px;
+}
+
+footer {
+	color: #808080;
+}
+footer button {
+	background-color: #141414;
+	border: 2px solid #808080;
+	color: #808080;
+}
+.modalino {
+	background-color: #141414;
+	color: white;
+}
+.modalino button {
+	background-color: #141414;
+	border: 2px solid #808080;
+	color: #808080;
+}

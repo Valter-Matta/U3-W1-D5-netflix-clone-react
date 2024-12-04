@@ -4,31 +4,14 @@ import { Row, Container, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Gallery extends Component {
-	state = {
-		filmsFantasy: [],
-		filmsHorror: [],
-		filmsAction: [],
-		loadingFantasy: true,
-		loadingHorror: true,
-		loadingAction: true,
-	};
-	getFilmsFantasy = genre => {
-		fetch(`http://www.omdbapi.com/?apikey=2b484486&s=${genre}`)
-			.then(response => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					throw new Error("errore nella chiamata API");
-				}
-			})
-			.then(data => {
-				console.log(data.Search);
-				this.setState({ filmsFantasy: data.Search, loadingFantasy: false });
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
+	// state = {
+	// 	filmsHorror: [],
+	// 	filmsAction: [],
+
+	// 	loadingHorror: true,
+	// 	loadingAction: true,
+	// };
+
 	getFilmsAction = genre => {
 		fetch(`http://www.omdbapi.com/?apikey=2b484486&s=${genre}`)
 			.then(response => {
@@ -40,10 +23,12 @@ class Gallery extends Component {
 			})
 			.then(data => {
 				console.log(data.Search);
-				this.setState({
-					filmsAction: data.Search,
-					loadingAction: false,
-				});
+				// this.setState({
+				// 	filmsAction: data.Search,
+				// 	loadingAction: false,
+				// });
+				this.props.setFilmsAction(data.Search);
+				this.props.setloadingAction(false);
 			})
 			.catch(err => {
 				console.log(err);
@@ -60,57 +45,43 @@ class Gallery extends Component {
 			})
 			.then(data => {
 				console.log(data.Search);
-				this.setState({
-					filmsHorror: data.Search,
-					loadingHorror: false,
-				});
+
+				this.props.setFilmsHorror(data.Search);
+				this.props.setloadingHorror(false);
 			})
 			.catch(err => {
 				console.log(err);
 			});
 	};
 	componentDidMount() {
-		this.getFilmsFantasy("fantasy");
-		this.getFilmsHorror("horror");
-		this.getFilmsAction("Action");
+		this.getFilmsHorror("Horror");
+		this.getFilmsAction("starwars");
 	}
 	render() {
 		return (
 			<div className="container-fluid px-5">
 				<div>
-					<h1 className="text-start text-white pt-4">Avventure</h1>
-					{this.state.loadingFantasy ? (
-						<Spinner
-							animation="border"
-							className=" position-relative top-50 start-0"
-							variant="light"
-						/>
-					) : (
-						<RowOfFilms films={this.state.filmsFantasy}></RowOfFilms>
-					)}
-				</div>
-				<div>
 					<h1 className="text-start text-white pt-4">Paura?</h1>
-					{this.state.loadingHorror ? (
+					{this.props.loadingHorror ? (
 						<Spinner
 							animation="border"
 							className=" position-relative top-50 start-0"
 							variant="light"
 						/>
 					) : (
-						<RowOfFilms films={this.state.filmsHorror}></RowOfFilms>
+						<RowOfFilms films={this.props.filmsHorror}></RowOfFilms>
 					)}
 				</div>
 				<div>
 					<h1 className="text-start text-white pt-4">Action</h1>
-					{this.state.loadingAction ? (
+					{this.props.loadingAction ? (
 						<Spinner
 							animation="border"
 							className=" position-relative top-50 start-0"
 							variant="light"
 						/>
 					) : (
-						<RowOfFilms films={this.state.filmsAction}></RowOfFilms>
+						<RowOfFilms films={this.props.filmsAction}></RowOfFilms>
 					)}
 				</div>
 			</div>

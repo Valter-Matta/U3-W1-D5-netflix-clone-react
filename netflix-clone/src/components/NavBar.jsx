@@ -1,5 +1,6 @@
 import { Modal, ModalBody, ModalHeader, Button } from "react-bootstrap";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 	const [showProfile, setShowProfile] = useState(false);
@@ -38,18 +39,21 @@ const NavBar = () => {
 					>
 						<ul class="navbar-nav mb-2 d-flex flex-column justify-content-center flex-md-row pb-3 pb-lg-0">
 							<li class="nav-item me-3 me-md-5 me-lg-0">
-								<a
-									class="nav-link active text-white text text-center"
+								<Link
+									className="nav-link active text-white text text-center"
 									aria-current="page"
-									href="#"
+									to="/"
 								>
 									Home
-								</a>
+								</Link>
 							</li>
 							<li class="nav-item me-3 me-md-5 me-lg-0">
-								<a class="nav-link text-white fw-bold text-center" href="#">
+								<Link
+									class="nav-link text-white fw-bold text-center"
+									to="/tv-shows"
+								>
 									TVShows
-								</a>
+								</Link>
 							</li>
 							<li class="nav-item me-3 me-md-5 me-lg-0">
 								<a class="nav-link text-white text-center" aria-current="page">

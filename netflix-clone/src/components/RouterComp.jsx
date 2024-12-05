@@ -33,7 +33,7 @@ class RouterComp extends Component {
 			});
 	};
 	componentDidMount() {
-		this.getFilmsFantasy("starwars");
+		this.getFilmsFantasy("star wars");
 	}
 	render() {
 		return (
